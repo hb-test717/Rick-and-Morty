@@ -32,11 +32,17 @@ cd Rick-and-Morty
 ```bash
 yarn install
 ```
-3. Start the development server
+
+3. Copy the `.env.example` file to `.env`
+```bash
+cp .env.sample .env
+```
+
+4. Start the development server
 ```bash
 yarn dev
 ```
-4. The dev server will be running at [http://localhost:3000](http://localhost:3000).
+5. The dev server will be running at [http://localhost:3000](http://localhost:3000).
 
 ## Linting
 Run linting using

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Provider from "@/app/components/shared/provider"
 import UserDetailsCheck from "@/app/components/UserDetailsCheck";
+import Footer from "./components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,7 @@ export default function RootLayout({
         <Provider>
           <UserDetailsCheck>
             {children}
+            <Footer />
           </UserDetailsCheck>
         </Provider>
       </body>
