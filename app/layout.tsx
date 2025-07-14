@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Provider from "@/app/components/shared/provider"
+import Providers from "@/app/components/shared/providers"
 import UserDetailsCheck from "@/app/components/UserDetailsCheck";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -28,14 +28,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Provider>
+        <Providers>
           <UserDetailsCheck>
             <Header />
             {children}
             <Footer />
           </UserDetailsCheck>
-        </Provider>
+        </Providers>
       </body>
-    </html>
+    </html >
   );
 }
