@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import UserDetailsModal from '../../app/components/UserDetailsModal';
 import Provider from '@/app/components/shared/provider';
 
@@ -64,6 +64,37 @@ describe('UserDetailsModal', () => {
     });
   })
 
+  describe("onClose", () => {
+    describe("when onClose is not provided", () => {
+      it('does not render close and cancel buttons', () => {
+        renderComponent();
+
+        expect(screen.queryByLabelText('Close')).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: 'Cancel' })).not.toBeInTheDocument();
+      });
+    })
+
+    describe("when onClose is provided", () => {
+      it('renders close and cancel buttons', async () => {
+        const onCloseMock = jest.fn();
+        renderComponent({ onClose: onCloseMock });
+
+        const closeButton = screen.getByLabelText('Close');
+        const cancelButton = screen.getByRole('button', { name: 'Cancel' });
+
+        expect(closeButton).toBeInTheDocument();
+        expect(cancelButton).toBeInTheDocument();
+
+        await act(async () => {
+          fireEvent.click(closeButton);
+          fireEvent.click(cancelButton);
+        });
+
+        expect(onCloseMock).toHaveBeenCalledTimes(2);
+      });
+    })
+  })
+
   it('calls updateUserInfo when form is submitted', () => {
     renderComponent();
 
@@ -88,9 +119,10 @@ describe('UserDetailsModal', () => {
     expect(mockUpdateUserInfo).toHaveBeenCalled();
 
     // Checking the arguments passed to the mocked function
-    const formDataArg = mockUpdateUserInfo.mock.calls[0][0];
-    expect(formDataArg.get).toBeDefined();
-    expect(formDataArg.get('username')).toBe('Bobby');
-    expect(formDataArg.get('jobTitle')).toBe('Student');
+    const updatedData = mockUpdateUserInfo.mock.calls[0][0];
+    expect(updatedData).toEqual({
+      username: 'Bobby',
+      jobTitle: 'Student',
+    });
   });
 });

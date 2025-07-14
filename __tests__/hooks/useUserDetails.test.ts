@@ -55,16 +55,12 @@ describe('useUserDetails', () => {
     it('updates userInfo state and localStorage with FormData', async () => {
       const { result } = renderHook(() => useUserDetails());
 
-      const formData = new FormData();
-      formData.append('username', 'Morty Smith');
-      formData.append('jobTitle', 'Student');
-
+      const updatedData = { username: 'Morty Smith', jobTitle: 'Student' };
       await act(async () => {
-        await result.current.updateUserInfo(formData);
+        result.current.updateUserInfo(updatedData);
       });
 
       const expectedUserInfo = { username: 'Morty Smith', jobTitle: 'Student' };
-
       expect(result.current.userInfo).toEqual(expectedUserInfo);
       expect(result.current.hasRequiredData).toBe(true);
       expect(localStorage.setItem).toHaveBeenCalledWith(
@@ -76,15 +72,13 @@ describe('useUserDetails', () => {
     it('saves the form data with partial user info', async () => {
       const { result } = renderHook(() => useUserDetails());
 
-      const formData = new FormData();
-      formData.append('username', 'Birdperson');
+      const updatedData = { username: 'Birdperson' };
 
       await act(async () => {
-        await result.current.updateUserInfo(formData);
+        result.current.updateUserInfo(updatedData);
       });
 
       const expectedUserInfo = { username: 'Birdperson' };
-
       expect(result.current.userInfo).toEqual(expectedUserInfo);
       expect(result.current.hasRequiredData).toBe(false);
       expect(localStorage.setItem).toHaveBeenCalledWith(

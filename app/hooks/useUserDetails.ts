@@ -15,9 +15,7 @@ type Data = Record<string, string>
 const useUserDetails = () => {
   const [userInfo, setUserInfo] = useState<Data>(userInfoFromLocalStorage);
 
-  const updateUserInfo = async (formData: FormData) => {
-    const data = Object.fromEntries(formData) as Data;
-
+  const updateUserInfo = (data: Data) => {
     setUserInfoInLocalStorage(data)
     setUserInfo(data);
   };
