@@ -45,7 +45,12 @@ yarn lint
 ```
 
 ## Testing
-[TODO]
+Jest is used as the testing framework. The tests are located in the `__tests__` directory.
+
+Run tests using
+```bash
+yarn test
+```
 
 ## Deployment
 [TODO]
