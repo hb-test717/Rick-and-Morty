@@ -1,6 +1,6 @@
 "use client";
 
-import useUserDetails from "@/app/hooks/useUserDetails";
+import useUserDetails from "@/hooks/useUserDetails";
 import { Box, Button, Flex, Text, useDisclosure } from "@chakra-ui/react";
 import UserDetailsModal from "../UserDetailsModal";
 

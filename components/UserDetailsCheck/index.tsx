@@ -1,7 +1,7 @@
 "use client"
 
-import useUserDetails from '@/app/hooks/useUserDetails';
-import UserDetailsModal from '@/app/components/UserDetailsModal';
+import useUserDetails from '@/hooks/useUserDetails';
+import UserDetailsModal from '@/components/UserDetailsModal';
 import dynamic from 'next/dynamic';
 
 const UserDetailsCheck = ({ children }: { children: React.ReactNode }) => {

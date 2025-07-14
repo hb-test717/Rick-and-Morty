@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
-import useUserDetails from '../../app/hooks/useUserDetails';
+import useUserDetails from '@/hooks/useUserDetails';
 
 describe('useUserDetails', () => {
   beforeEach(() => {

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import UserDetailsModal from '../../app/components/UserDetailsModal';
-import Provider from '@/app/components/shared/provider';
+import UserDetailsModal from '@/components/UserDetailsModal';
+import Provider from '@/components/shared/providers';
 
 import '@testing-library/jest-dom';
 
