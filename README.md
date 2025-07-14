@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org) project.
 
 - **Framework**: [Next.js](https://nextjs.org/docs) with App Router
 - **Language**: [TypeScript](https://www.typescriptlang.org)
-- **Styling**: CSS
+- **Styling**: CSS and [Chakra UI](https://chakra-ui.com)
 
 ## Prerequisites
 To avoid compatibility issues, please check that your dev environment meets the following requirements:
