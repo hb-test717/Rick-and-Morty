@@ -13,7 +13,7 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <header>
       <Box bg="gray.50" py={3} px={6} borderBottom="1px" borderColor="gray.200">
         <Flex justify="space-between" align="center">
           <Box>
@@ -35,7 +35,7 @@ const Header = () => {
           />
         </Flex>
       </Box>
-    </div >
+    </header >
   );
 }
 

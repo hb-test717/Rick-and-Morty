@@ -2,7 +2,7 @@
 
 import { Box, Button, Heading, Link, Stack, Text } from "@chakra-ui/react";
 
-export default function Home() {
+const Home = () => {
   return (
     <Box
       minH="80vh"
@@ -28,3 +28,5 @@ export default function Home() {
     </Box>
   );
 }
+
+export default Home;
