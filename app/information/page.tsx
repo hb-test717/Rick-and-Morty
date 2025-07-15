@@ -3,7 +3,7 @@
 import Pagination from '@/components/shared/pagination';
 import { getClient } from '@/lib/ApolloClient';
 import { gql } from '@apollo/client';
-import { Avatar, Box, Button, Container, HStack, Text, VStack } from '@chakra-ui/react';
+import { Alert, Avatar, Box, Button, Container, HStack, Text, VStack } from '@chakra-ui/react';
 
 const PAGE_SIZE = 100;
 
@@ -14,8 +14,15 @@ interface InformationPageProps {
 }
 
 const InformationPage = async ({ searchParams }: InformationPageProps) => {
+  // Ensure the page parameter is a valid integer. Default to 1 if not provided or invalid.
   const params = await searchParams;
-  const page = parseInt(params.page ?? '1');
+  let page = Number(params?.page || "1");
+
+  let showParamsWarning = false;
+  if (!Number.isInteger(page) || page <= 0) {
+    showParamsWarning = true;
+    page = 1;
+  }
 
   const { data, loading, error } = await getClient().query({ query: GET_CHARACTERS_QUERY, variables: { page } });
 
@@ -24,6 +31,14 @@ const InformationPage = async ({ searchParams }: InformationPageProps) => {
 
   return (
     <Container>
+      {showParamsWarning && (
+        <Alert.Root status="warning">
+          <Alert.Indicator />
+          <Alert.Title>
+            Invalid page parameter. Displaying the first page instead.
+          </Alert.Title>
+        </Alert.Root>
+      )}
       <VStack gap={0} align="stretch">
         {data.characters.results.map((character: Character) => (
           <HStack
