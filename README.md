@@ -109,7 +109,7 @@ I've extracted components and hooks into reusable and modular pieces as I progre
 ### Accessibility
 The application is also built with accessibility in mind.
 - The application is keyboard accessible - interactive elements are tabbable
-- HTML form with native input validation are used for better accessibility.
+- HTML form with input validation and error banners are used for better accessibility.
 - The pages are URL accessible (except for modals which don't have distinct URL due to time limits). The colour scheme are accessible and meet WCAG 2.1 AA standards.
 - Proper roles are provided to components such as Modal components where ChakraUI doesn't use accurate HTML5 elements.
 - Images are provided alt text
