@@ -37,11 +37,11 @@ const UserDetailsModal = ({ userInfo, updateUserInfo, open, onClose }: UserDetai
         <Stack gap="8">
           <Field.Root>
             <Field.Label>Username</Field.Label>
-            <Input name="username" placeholder="Username" defaultValue={userInfo?.username || ""} required />
+            <Input name="username" placeholder="Username" defaultValue={userInfo?.username || ""} required pattern=".*\\S.*" title="Username must contain at least one non-whitespace character" />
           </Field.Root>
           <Field.Root>
             <Field.Label>Job Title</Field.Label>
-            <Input name="jobTitle" placeholder="Job Title" defaultValue={userInfo?.jobTitle || ""} required />
+            <Input name="jobTitle" placeholder="Job Title" defaultValue={userInfo?.jobTitle || ""} required pattern=".*\\S.*" title="Job title must contain at least one non-whitespace character" />
           </Field.Root>
         </Stack>
       </form>

@@ -3,7 +3,8 @@
 import Pagination from '@/components/shared/pagination';
 import { getClient } from '@/lib/ApolloClient';
 import { gql } from '@apollo/client';
-import { Alert, Avatar, Box, Button, Container, HStack, Text, VStack } from '@chakra-ui/react';
+import { Alert, Box, Container, VStack } from '@chakra-ui/react';
+import CharacterListItem, { Character } from './components/CharacterListItem';
 
 const PAGE_SIZE = 100;
 
@@ -41,31 +42,7 @@ const InformationPage = async ({ searchParams }: InformationPageProps) => {
       )}
       <VStack gap={0} align="stretch">
         {data.characters.results.map((character: Character) => (
-          <HStack
-            key={character.id}
-            p={4}
-            borderBottomWidth={1}
-            borderColor="gray.200"
-            _hover={{ bg: "gray.50" }}
-            gap={4}
-            align="center"
-          >
-            <Avatar.Root shape="rounded" size="lg">
-              <Avatar.Image src={character.image} />
-              <Avatar.Fallback name={character.name} />
-            </Avatar.Root>
-            <VStack align="start" gap={0} flex={1}>
-              <Text fontSize="md" fontWeight="medium">
-                {character.name}
-              </Text>
-              <Text fontSize="sm" color="gray.600">
-                {character.species} • {character.gender} • {character.status}
-              </Text>
-            </VStack>
-            <Button variant="ghost" size="sm">
-              View details
-            </Button>
-          </HStack>
+          <CharacterListItem character={character} key={character.id} />
         ))}
       </VStack>
       <Box width="100%" display="flex" justifyContent="center" alignItems="center" py={12}>
@@ -73,15 +50,6 @@ const InformationPage = async ({ searchParams }: InformationPageProps) => {
       </Box>
     </Container >
   );
-}
-
-type Character = {
-  id: string;
-  image: string;
-  name: string;
-  gender: string;
-  status: string;
-  species: string;
 }
 
 const GET_CHARACTERS_QUERY = gql`
@@ -95,12 +63,25 @@ const GET_CHARACTERS_QUERY = gql`
         name
         status
         species
+        type
         gender
         image
+        origin {
+          name
+          type
+        }
+        location {
+          name
+          type
+        }
+        episode {
+          id
+          name
+          air_date
+        }
       }
     }
   }
 `;
-
 
 export default InformationPage;

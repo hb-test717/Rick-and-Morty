@@ -28,4 +28,8 @@ Object.defineProperty(window, 'localStorage', {
 });
 
 // Mock structuredClone that's not available in jsdom
-global.structuredClone = v => JSON.parse(JSON.stringify(v));
+global.structuredClone = v => {
+  // This does a clone of simple objects and may fail. We'll need to
+  // add better polyfill for productionized app
+  return { ...v };
+}
