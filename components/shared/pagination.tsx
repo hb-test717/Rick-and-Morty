@@ -34,28 +34,25 @@ const Pagination = ({ total, page, pageSize = 20, defaultPage = 1 }: PaginationP
     <ChakraPagination.Root count={total} pageSize={pageSize} defaultPage={defaultPage} page={page} onPageChange={handlePageChange}>
       <ButtonGroup variant="ghost" size="sm">
         <ChakraPagination.PrevTrigger asChild>
-          <IconButton>
+          <IconButton aria-label="Previous page">
             <Image
               priority
               src={chevronLeft}
               alt="Previous page"
+              width={16}
+              height={16}
             />
           </IconButton>
         </ChakraPagination.PrevTrigger>
-
-        <ChakraPagination.Items
-          render={(page: { value: number }) => (
-            <IconButton variant={{ base: "ghost", _selected: "outline" }}>
-              {page.value}
-            </IconButton>
-          )}
-        />
+        <ChakraPagination.PageText />
         <ChakraPagination.NextTrigger asChild>
-          <IconButton>
+          <IconButton aria-label="Next page">
             <Image
               priority
               src={chevronRight}
               alt="Next page"
+              width={16}
+              height={16}
             />
           </IconButton>
         </ChakraPagination.NextTrigger>

@@ -3,6 +3,7 @@
 import { Button, Field, Input, Stack } from "@chakra-ui/react"
 import useUserDetails from "@/hooks/useUserDetails";
 import Modal from "@/components/shared/Modal";
+import Alert from "@/components/shared/Alert";
 
 type UserDetailsModalProps = {
   userInfo: ReturnType<typeof useUserDetails>["userInfo"],
@@ -35,13 +36,30 @@ const UserDetailsModal = ({ userInfo, updateUserInfo, open, onClose }: UserDetai
     >
       <form action={updateDetails} role="form" id="user-details-form">
         <Stack gap="8">
+          {!!errorMessage && (<Alert>{errorMessage}</Alert>)}
           <Field.Root>
-            <Field.Label>Username</Field.Label>
-            <Input name="username" placeholder="Username" defaultValue={userInfo?.username || ""} required pattern=".*\\S.*" title="Username must contain at least one non-whitespace character" />
+            <Field.Label fontSize="md">Username</Field.Label>
+            <Input
+              name="username"
+              placeholder="Username"
+              defaultValue={userInfo?.username || ""}
+              required
+              pattern=".*\S.*"
+              title="Username must contain at least one character"
+              size={{ base: 'sm', md: 'md' }}
+            />
           </Field.Root>
           <Field.Root>
-            <Field.Label>Job Title</Field.Label>
-            <Input name="jobTitle" placeholder="Job Title" defaultValue={userInfo?.jobTitle || ""} required pattern=".*\\S.*" title="Job title must contain at least one non-whitespace character" />
+            <Field.Label fontSize="md">Job Title</Field.Label>
+            <Input
+              name="jobTitle"
+              placeholder="Job Title"
+              defaultValue={userInfo?.jobTitle || ""}
+              required
+              pattern=".*\S.*"
+              title="Job title must contain at least one non-whitespace character"
+              size={{ base: 'sm', md: 'md' }}
+            />
           </Field.Root>
         </Stack>
       </form>

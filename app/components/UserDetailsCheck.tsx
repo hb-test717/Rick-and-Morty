@@ -4,6 +4,9 @@ import useUserDetails from '@/hooks/useUserDetails';
 import UserDetailsModal from '@/components/UserDetailsModal';
 import dynamic from 'next/dynamic';
 
+/**
+ * Block children component from rendering until the User details are provided to the user.
+ */
 const UserDetailsCheck = ({ children }: { children: React.ReactNode }) => {
   const { userInfo, updateUserInfo, hasRequiredData } = useUserDetails()
 

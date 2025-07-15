@@ -1,7 +1,7 @@
 "use client";
 
 import useUserDetails from "@/hooks/useUserDetails";
-import { Box, Button, Flex, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Flex, Text, useDisclosure, Container } from "@chakra-ui/react";
 import UserDetailsModal from "../UserDetailsModal";
 
 const Header = () => {
@@ -13,18 +13,18 @@ const Header = () => {
   };
 
   return (
-    <header>
-      <Box bg="gray.50" py={3} px={6} borderBottom="1px" borderColor="gray.200">
-        <Flex justify="space-between" align="center">
+    <Box as="header" position="sticky" top={0} zIndex="sticky" bg="gray.100" py={3} px={4} borderBottom="1px" borderColor="gray.200">
+      <Container maxW="container.xl">
+        <Flex justify="space-between" align="center" flexWrap={{ base: "wrap", sm: "nowrap" }} gap={2}>
           <Box>
             <Text fontWeight="bold">{userInfo.username}</Text>
-            <Text fontSize="sm" color="gray.600">
+            <Text color="gray.600">
               {userInfo.jobTitle}
             </Text>
           </Box>
 
-          <Button onClick={() => setOpen(true)} colorScheme="blue" size="sm">
-            Edit
+          <Button onClick={() => setOpen(true)} colorScheme="blue" size="sm" w={{ base: "1/2", sm: "auto" }}>
+            Edit profile
           </Button>
 
           <UserDetailsModal
@@ -34,8 +34,8 @@ const Header = () => {
             onClose={() => { setOpen(false) }}
           />
         </Flex>
-      </Box>
-    </header >
+      </Container>
+    </Box>
   );
 }
 

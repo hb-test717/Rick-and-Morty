@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act, within } from '@testing-library/react';
-import CharacterListItem, { Character } from '@/app/information/components/CharacterListItem';
+import CharacterListItem from '@/app/information/components/CharacterListItem';
 import Provider from '@/components/shared/providers';
+import { Character } from '@/types/character';
 
 import '@testing-library/jest-dom';
 
@@ -80,22 +81,22 @@ describe('CharacterListItem', () => {
       const modal = screen.getByRole('dialog');
       const modalContent = within(modal);
 
-      expect(modalContent.getByText('Status:')).toBeInTheDocument();
+      expect(modalContent.getByText('Status')).toBeInTheDocument();
       expect(modalContent.getByText('Alive', { exact: false })).toBeInTheDocument();
 
-      expect(modalContent.getByText('Species:')).toBeInTheDocument();
+      expect(modalContent.getByText('Species')).toBeInTheDocument();
       expect(modalContent.getByText('Human', { exact: false })).toBeInTheDocument();
 
-      expect(modalContent.getByText('Type:')).toBeInTheDocument();
+      expect(modalContent.getByText('Type')).toBeInTheDocument();
       expect(modalContent.getByText('Super Genius', { exact: false })).toBeInTheDocument();
 
-      expect(modalContent.getByText('Gender:')).toBeInTheDocument();
+      expect(modalContent.getByText('Gender')).toBeInTheDocument();
       expect(modalContent.getByText('Male', { exact: false })).toBeInTheDocument();
 
-      expect(modalContent.getByText('Origin:')).toBeInTheDocument();
+      expect(modalContent.getByText('Origin')).toBeInTheDocument();
       expect(modalContent.getByText('Earth (C-137)', { exact: false })).toBeInTheDocument();
 
-      expect(modalContent.getByText('Location:')).toBeInTheDocument();
+      expect(modalContent.getByText('Location')).toBeInTheDocument();
       expect(modalContent.getByText('Citadel of Ricks', { exact: false })).toBeInTheDocument();
     });
 

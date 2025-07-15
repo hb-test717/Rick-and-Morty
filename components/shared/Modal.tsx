@@ -26,15 +26,15 @@ const Modal = ({ title, children, footer, open, onClose }: ModalProps) => {
   };
 
   return (
-    <Dialog.Root size="lg" placement="center" onOpenChange={onOpenChange} open={open} closeOnEscape={canCloseModal} closeOnInteractOutside={canCloseModal}>
+    <Dialog.Root size={{ base: "cover", sm: "lg" }} placement="center" onOpenChange={onOpenChange} open={open} closeOnEscape={canCloseModal} closeOnInteractOutside={canCloseModal}>
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
-          <Dialog.Content>
+          <Dialog.Content height={{ base: "100%", md: "auto" }}>
             <Dialog.Header>
-              <Dialog.Title>{title}</Dialog.Title>
+              <Dialog.Title fontSize={{ base: "md", md: "lg" }}>{title}</Dialog.Title>
             </Dialog.Header>
-            <Dialog.Body>
+            <Dialog.Body overflowY="auto">
               {children}
             </Dialog.Body>
             <DialogFooter>
@@ -43,10 +43,10 @@ const Modal = ({ title, children, footer, open, onClose }: ModalProps) => {
                 canCloseModal && (
                   <>
                     <Dialog.ActionTrigger asChild>
-                      <Button variant="outline">Cancel</Button>
+                      <Button size="lg" variant="outline">Cancel</Button>
                     </Dialog.ActionTrigger>
                     <Dialog.CloseTrigger asChild>
-                      <CloseButton size="sm" />
+                      <CloseButton size="md" />
                     </Dialog.CloseTrigger>
                   </>
                 )

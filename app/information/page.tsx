@@ -1,17 +1,17 @@
 "use server"
 
 import Pagination from '@/components/shared/pagination';
-import { getClient } from '@/lib/ApolloClient';
-import { gql } from '@apollo/client';
-import { Alert, Box, Container, VStack } from '@chakra-ui/react';
-import CharacterListItem, { Character } from './components/CharacterListItem';
+import { Alert, Box, Container, Text, VStack } from '@chakra-ui/react';
+import CharacterListItem from './components/CharacterListItem';
+import getCharacters from '@/api/getCharacters';
+import { Character } from '@/types/character';
 
-const PAGE_SIZE = 100;
+const PAGE_SIZE = 20;
 
 interface InformationPageProps {
-  searchParams: {
+  searchParams: Promise<{
     page?: string;
-  };
+  }>;
 }
 
 const InformationPage = async ({ searchParams }: InformationPageProps) => {
@@ -25,63 +25,58 @@ const InformationPage = async ({ searchParams }: InformationPageProps) => {
     page = 1;
   }
 
-  const { data, loading, error } = await getClient().query({ query: GET_CHARACTERS_QUERY, variables: { page } });
+  const { data, error } = await getCharacters(page)
 
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+  const hasResponse = !!data?.characters?.info?.pages;
 
   return (
-    <Container>
-      {showParamsWarning && (
-        <Alert.Root status="warning">
-          <Alert.Indicator />
-          <Alert.Title>
-            Invalid page parameter. Displaying the first page instead.
-          </Alert.Title>
-        </Alert.Root>
-      )}
-      <VStack gap={0} align="stretch">
-        {data.characters.results.map((character: Character) => (
-          <CharacterListItem character={character} key={character.id} />
-        ))}
-      </VStack>
-      <Box width="100%" display="flex" justifyContent="center" alignItems="center" py={12}>
-        <Pagination total={data.characters.info.count} page={page} pageSize={PAGE_SIZE} />
-      </Box>
+    <Container maxW="container.xl" py={2} >
+      {/* Displaying banner when invalid page is requested */}
+      {
+        showParamsWarning && (
+          <Alert.Root role="alert" status="warning">
+            <Alert.Indicator />
+            <Alert.Title fontSize="sm">
+              Invalid page parameter. Displaying the first page instead.
+            </Alert.Title>
+          </Alert.Root>
+        )
+      }
+
+      {
+        hasResponse ? (
+          <>
+            <Box py={4}>
+              <Text fontWeight="bold">Browsing characters</Text>
+              <Text fontSize="sm" color="gray.600">
+                Page {page} of {data.characters.info.pages}
+              </Text>
+            </Box>
+
+            <VStack py={2} gap={0} align="stretch">
+              {data.characters.results.map((character: Character) => (
+                <CharacterListItem character={character} key={character.id} />
+              ))}
+            </VStack>
+            <Box width="100%" display="flex" justifyContent="center" alignItems="center" py={12}>
+              <Pagination total={data.characters.info.count} page={page} pageSize={PAGE_SIZE} />
+            </Box>
+          </>
+        ) : (
+          // Fallback to a simple error message
+          <Box py={4}>
+            <Alert.Root role="alert" status="error" >
+              <Alert.Indicator />
+              <Alert.Title>
+                There was an error fetching characters. Please try again later.
+              </Alert.Title>
+            </Alert.Root>
+          </Box>
+        )
+      }
     </Container >
   );
 }
-
-const GET_CHARACTERS_QUERY = gql`
-  query GetCharacters($page: Int!) {
-    characters(page: $page) {
-      info {
-        count
-      }
-      results {
-        id
-        name
-        status
-        species
-        type
-        gender
-        image
-        origin {
-          name
-          type
-        }
-        location {
-          name
-          type
-        }
-        episode {
-          id
-          name
-          air_date
-        }
-      }
-    }
-  }
-`;
 
 export default InformationPage;

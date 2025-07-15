@@ -2,7 +2,8 @@
 
 import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
 
-const Provider = ({ children }: { children: React.ReactNode }) => {
+// Third party providers required for the application
+const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <ChakraProvider value={defaultSystem}>
       {children}
@@ -10,4 +11,4 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export default Provider;
+export default Providers;

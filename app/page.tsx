@@ -21,7 +21,7 @@ const Home = () => {
         </Text>
         <Link href="/information">
           <Button colorScheme="teal" size="lg">
-            View Characters
+            Browse Characters
           </Button>
         </Link>
       </Stack>
