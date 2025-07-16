@@ -1,6 +1,7 @@
 "use client";
 
-import { Box, Button, Heading, Link, Stack, Text } from "@chakra-ui/react";
+import LinkButton from "@/components/shared/LinkButton";
+import { Box, Heading, Stack, Text } from "@chakra-ui/react";
 
 const Home = () => {
   return (
@@ -19,13 +20,10 @@ const Home = () => {
         <Text fontSize="lg" color="gray.700">
           Explore your favourite characters and episodes.
         </Text>
-        <Link href="/information">
-          <Button colorScheme="teal" size="lg">
-            Browse Characters
-          </Button>
-        </Link>
+
+        <LinkButton colorScheme="teal" size="lg" href="/information">Browse Characters</LinkButton>
       </Stack>
-    </Box>
+    </Box >
   );
 }
 
