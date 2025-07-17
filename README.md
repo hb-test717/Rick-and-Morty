@@ -65,6 +65,9 @@ This application is currently deployed on [Vercel](https://vercel.com)
 ## Project Notes
 The project uses the Rick and Morty API to fetch data about characters, locations, and episodes. It also utilizes Chakra UI for styling and Apollo Client for GraphQL queries.
 
+### Task requirements
+All requirements listed on the documents have been carefully worked through and have been met. Ideally, these would be tested but I have skipped it to focus on other parts of the project. This would be the next step in the development process.
+
 ### Assumptions and comments
 - I used a blocking modal overlay to ensure that the user isn't redirected to a separate page and reuse the modal.
 - I've added testing libraries such as Jest and React Testing Library as this was a required for developing multiple shared component while ensuring no regression over the course of the development
@@ -75,8 +78,8 @@ The project uses the Rick and Morty API to fetch data about characters, location
 ### Project Structure
 The project is built using Next.js with App Router and Typescript. The project is organized as follows:
 
-- `apps`: Contains the main pages of the application.
-  - `components`: Any components for pages are created under `/components` directory alongside the `page.tsx` file.
+- `apps`: Contains components for routes, such as `/information`
+  - `components`: Components specific to individual routes.
 - `components`: Contains reusable and shared components used throughout the application.
 - `hooks`: Contains reusable hooks files used throughout the application.
 - `api`: Reuseable functions to fetch requests via GraphQL API and Apollo Client
@@ -85,7 +88,7 @@ The project is built using Next.js with App Router and Typescript. The project i
 
 
 ### Storing users data
-The project stores user's information on LocalStorage. This ensures that the user data is persisted across page reloads while using a simple option to store data.
+The project stores user's information on LocalStorage. LocalStorage was chosen because it provides a simple and efficient way to store data locally on the user's device and keeps the implementation simple for demo purposes.
 
 ### Environment variables
 The project uses environment variables to store informations such as the API endpoint as well as version information that may be different based on runtime environment.
