@@ -23,7 +23,7 @@ const Header = () => {
             </Text>
           </Box>
 
-          <Button onClick={() => setOpen(true)} colorScheme="blue" size="sm" w={{ base: "1/2", sm: "auto" }}>
+          <Button variant="surface" onClick={() => setOpen(true)} colorScheme="blue" size="sm" w={{ base: "1/2", sm: "auto" }}>
             Edit profile
           </Button>
 
