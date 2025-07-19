@@ -9,29 +9,36 @@ import { useRouter } from 'next/navigation'
 import { usePathname, useSearchParams } from 'next/navigation';
 
 interface PaginationProps {
-  total: number;
-  page: number;
-  pageSize?: number;
-  defaultPage?: number;
+  details: {
+    count: number | null
+    pages: number | null
+    next: number | null
+    prev: number | null
+  }
+  currentPage: number;
+  pageSize: number;
 }
 
 /**
  * A reusable Pagination component. Upon page change, it updates the
  * `page` query string while maintaining other query string parameters.
  */
-const Pagination = ({ total, page, pageSize = 20, defaultPage = 1 }: PaginationProps) => {
+const Pagination = ({ details, currentPage, pageSize }: PaginationProps) => {
   const searchParams = new URLSearchParams(useSearchParams())
   const pathname = usePathname()
   const router = useRouter()
 
   const handlePageChange = ({ page }: { page: number }) => {
     searchParams.set("page", page.toString())
-
     router.push(`${pathname}?${searchParams.toString()}`)
   }
 
+  if (!details.count) {
+    return null;
+  }
+
   return (
-    <ChakraPagination.Root count={total} pageSize={pageSize} defaultPage={defaultPage} page={page} onPageChange={handlePageChange}>
+    <ChakraPagination.Root count={details.count} pageSize={pageSize} page={currentPage} onPageChange={handlePageChange}>
       <ButtonGroup variant="ghost" size="sm">
         <ChakraPagination.PrevTrigger asChild>
           <IconButton aria-label="Previous page">

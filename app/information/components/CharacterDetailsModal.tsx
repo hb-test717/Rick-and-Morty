@@ -24,6 +24,7 @@ const CharacterDetailsModal = ({ character, open, onClose }: CharacterDetailsMod
         />
 
         <VStack align="start" gap={2} flex="1">
+          <Text fontSize="lg"><strong>{character.name}</strong></Text>
           <Text as="dl" fontSize="sm">
             <dt><strong>Status</strong></dt>
             <dd>{character.status}</dd>

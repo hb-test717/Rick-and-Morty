@@ -4,6 +4,11 @@ import { Character } from "@/types/character";
 import { Avatar, VStack, Text, Button, useDisclosure, Stack, Flex } from "@chakra-ui/react";
 import CharacterDetailsModal from "./CharacterDetailsModal";
 
+/**
+ *
+ * Character list item component including character details including
+ * opening up the modal when clicked to view more information
+ */
 const CharacterListItem = ({ character }: { character: Character }) => {
   const { open, setOpen } = useDisclosure()
 

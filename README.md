@@ -88,34 +88,39 @@ The project is built using Next.js with App Router and Typescript. The project i
 
 
 ### Storing users data
-The project stores user's information on LocalStorage. LocalStorage was chosen because it provides a simple and efficient way to store data locally on the user's device and keeps the implementation simple for demo purposes.
+The project stores user's information on LocalStorage. LocalStorage was chosen as it provides a simple way to store data locally while keeping the implementation simple for demo purposes.
 
 ### Environment variables
 The project uses environment variables to store informations such as the API endpoint as well as version information that may be different based on runtime environment.
 
 ### Testing
-The projects adds jest and supporting libraries to ensure the quality of the codebase. The codebase hasn't been tested fully yet due to time constraints. For production application, I'd test more thoroughly and ensure that main flows are
-tested e2e with something like Playwright or Cypress.
+Jest and React testing library packages were added to ensure the quality of the codebase. The code coverage is quite low due to time constraints. Ideally, most of the logic would be tested before deploying it to production.
+
+Given more time, all of the requirements listed in the docs would be converted to tests as part of the testing process.
 
 ### Error Handling
-I've used error handling in few places to ensure that the application doesn't crash when something unexpected happens. For example, Corrupt JSON from Localstorage are handled gracefully. Similarly, input validation errors such as invalid query params are also handled gracefully.
+There are few error handling that I've added as part of this demo. Redirecting to 404 page on invalid params, handling apollo errors and JSON parsing are some of the handling that I've done.
 
-Additionally, I've mentioned few places where *Error monitoring* would be useful, but did not add one for demo purposes.
+Additionally, I've mentioned few places where *Error monitoring* would be useful, but did not add one for demo project.
+
+### Performance
+Few areas that I worked on performance:
+- Avoiding unnecessary re-renders by using useEffect in useUserDetails hook
+- Using Skeleton components and load parts of the page as the API can be quite slow at times.
+- Using Next components like Link and Image that do the heavy lifting of loading images and prefetching wherever applicable
 
 ### Deployment
-For the purposes of the demo and simplicity, the application is deployed directly to Vercel.
-In productionized application, there would be more build steps such as utilizing better caching, more component testing, accessibility testing and regression testing as well as static and bundle analysis of the codebase to ensure the application is optimized for production.
+The application is directly deployed with Vercel.
 
-### Reuseability / Modularity of components and codebase
-I've extracted components and hooks into reusable and modular pieces as I progressed through the application. For example, the modal, pagination controls etc can be reused in multiple places. These components may not look very generic and fit for purposes for general usecases. As the use-case evolves and when component needs to be extracted, these components will be further be extracted into a generic / 'dumb' components.
+A better CI/CD pipeline needs to be implemented with other steps such as accessibility testing, bundle analysis, security tests etc.
 
 ### Accessibility
 The application is also built with accessibility in mind.
-- The application is keyboard accessible - interactive elements are tabbable
+- The app keyboard accessible - interactive elements are tabbable
 - HTML form with input validation and error banners are used for better accessibility.
-- The pages are URL accessible (except for modals which don't have distinct URL due to time limits). The colour scheme are accessible and meet WCAG 2.1 AA standards.
+- The colour scheme are accessible and meet WCAG 2.1 AA standards.
 - Proper roles are provided to components such as Modal components where ChakraUI doesn't use accurate HTML5 elements.
 - Images are provided alt text
 
 ### Responsiveness
-The application is also built with responsiveness in mind. Most components have been updated lightly to be responsive instead of making the application completely responsive due to time constraints.
+The website is responsive.

@@ -11,6 +11,8 @@ const GET_CHARACTERS_QUERY = gql`
       info {
         count
         pages
+        next
+        prev
       }
       results {
         id

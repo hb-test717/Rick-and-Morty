@@ -13,7 +13,7 @@ const Header = () => {
   };
 
   return (
-    <Box as="header" position="sticky" top={0} zIndex="sticky" bg="gray.100" py={3} px={4} borderBottom="1px" borderColor="gray.200">
+    <Box as="header" position="sticky" top={0} zIndex="sticky" bg="gray.100" py={3} borderBottom="1px" borderColor="gray.200">
       <Container maxW="container.xl">
         <Flex justify="space-between" align="center" flexWrap={{ base: "wrap", sm: "nowrap" }} gap={2}>
           <Box>
