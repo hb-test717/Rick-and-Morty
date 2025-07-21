@@ -28,6 +28,7 @@ const Header = () => {
           </Button>
 
           <UserDetailsModal
+            title="Update your username and job title. These details are stored locally on your machine."
             open={open}
             userInfo={userInfo}
             updateUserInfo={saveAndCloseModal}

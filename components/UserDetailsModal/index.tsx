@@ -1,12 +1,13 @@
 "use client"
 
 import { useState } from "react";
-import { Button, Field, Input, Stack } from "@chakra-ui/react"
+import { Button, Field, Input, Stack, Text } from "@chakra-ui/react"
 import useUserDetails from "@/hooks/useUserDetails";
 import Modal from "@/components/shared/Modal";
 import Alert from "@/components/shared/Alert";
 
 type UserDetailsModalProps = {
+  title?: string;
   userInfo: ReturnType<typeof useUserDetails>["userInfo"],
   updateUserInfo: ReturnType<typeof useUserDetails>["updateUserInfo"],
   open: boolean
@@ -21,7 +22,7 @@ type UserDetailsModalProps = {
  * the modal cannot be closed by the user. This is useful when the parent component
  * wants to control the modal's lifecycle.
  */
-const UserDetailsModal = ({ userInfo, updateUserInfo, open, onClose }: UserDetailsModalProps) => {
+const UserDetailsModal = ({ title, userInfo, updateUserInfo, open, onClose, }: UserDetailsModalProps) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   /**
@@ -62,7 +63,7 @@ const UserDetailsModal = ({ userInfo, updateUserInfo, open, onClose }: UserDetai
 
   return (
     <Modal
-      title="Please enter your details"
+      title="Your profile"
       footer={
         <Button variant="solid" size="md" type="submit" form="user-details-form">Save and continue</Button>
       }
@@ -72,7 +73,7 @@ const UserDetailsModal = ({ userInfo, updateUserInfo, open, onClose }: UserDetai
       <form action={updateDetails} role="form" id="user-details-form">
         <Stack gap="8">
           {!!errorMessage && (<Alert>{errorMessage}</Alert>)}
-
+          {title && <Text fontSize="md">{title}</Text>}
           <Field.Root>
             <Field.Label fontSize="md">Username</Field.Label>
             <Input

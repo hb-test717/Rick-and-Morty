@@ -29,7 +29,7 @@ describe('UserDetailsModal', () => {
   it('renders the modal when open is true', () => {
     renderComponent();
 
-    expect(screen.getByText('Please enter your details')).toBeInTheDocument();
+    expect(screen.getByText('Your profile')).toBeInTheDocument();
     expect(screen.getByLabelText('Username')).toBeInTheDocument();
     expect(screen.getByLabelText('Job Title')).toBeInTheDocument();
   });

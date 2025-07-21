@@ -13,11 +13,11 @@ const UserDetailsCheck = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <UserDetailsModal
+        title="Welcome to Rick and Morty. Please provide a username and your job title to explore the world of Rick and Morty."
         open={!hasRequiredData}
         userInfo={userInfo}
         updateUserInfo={updateUserInfo}
       />
-
       {hasRequiredData && children}
     </>
   )
